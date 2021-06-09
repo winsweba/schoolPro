@@ -1,0 +1,12 @@
+import 'package:nm/models/washing_but.dart';
+import 'package:nm/servers/firestore_service.dart';
+
+class WashingBlock{
+  final db = FirestoreService();
+
+  Stream<List<WashingData>> get fetchUpcomingWashingBay => db.fetchUpcomingWashingBay();
+
+  dispose(){
+    
+  }
+}
