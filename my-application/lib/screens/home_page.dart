@@ -362,7 +362,9 @@ class BuildImageInteractionCard extends StatelessWidget {
                       Navigator.push(
                         context,
                         new MaterialPageRoute(
-                          builder: (context) => DetailsScreen(),
+                          
+                                                              //TODO Add  this
+                          builder: (context) => DetailsScreen(washingBayName),
                         ),
                       );
                     }

@@ -3,13 +3,10 @@ import 'dart:ui';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:nm/block/auth_block.dart';
-import 'package:nm/block/toast_message.dart';
-import 'package:nm/main.dart';
-import 'package:nm/screens/home_page.dart';
-import 'package:nm/screens/sign_in.dart';
-import 'package:nm/servers/firestore_service.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_appdsds/block/toast_messages.dart';
+import 'package:flutter_appdsds/screens/home_page.dart';
+import 'package:flutter_appdsds/screens/signin.dart';
+import 'package:flutter_appdsds/servers/firestore_servers.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -114,6 +111,7 @@ class _SignUpState extends State<SignUp> {
                   else
                 {
                   registerNewUser(context);
+                  
                 }
 
               },
@@ -144,10 +142,9 @@ class _SignUpState extends State<SignUp> {
       updateUser.updateProfile(displayName: nameTextEditingController.text);
       userSetup(
           nameTextEditingController.text, emailTextEditingController.text);
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
-          
           displayToastMessage("Thank you for Signning up ", context);
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (_) => MainPage()));
     } catch (e) {
       print(e.toString());
       displayToastMessage("Error:::: " + e.toString(),context);

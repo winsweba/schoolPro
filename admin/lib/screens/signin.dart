@@ -5,9 +5,9 @@ import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:nm/block/toast_message.dart';
-import 'package:nm/screens/home_page.dart';
-import 'package:nm/screens/register.dart';
+import 'package:flutter_appdsds/block/toast_messages.dart';
+import 'package:flutter_appdsds/screens/Register.dart';
+import 'package:flutter_appdsds/screens/home_page.dart';
 
 class SignIn  extends StatefulWidget {
 
@@ -84,7 +84,6 @@ class _SignState extends State<SignIn> {
                  else
                  {
                    loginAndAuthenticateUser(context);
-                   
                  }
                        },
               ),
@@ -113,8 +112,11 @@ class _SignState extends State<SignIn> {
             );
             // SharedPreferences prefs = await SharedPreferences.getInstance();
             // prefs.setString('displayName', user.user.displayName);
+
+            
             Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
+          .pushReplacement(MaterialPageRoute(builder: (_) => MainPage()));
+
           displayToastMessage("You are now Login ", context);
           }catch (e) {
             print(e.toString());

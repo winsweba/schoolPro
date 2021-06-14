@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:nm/block/toast_message.dart';
 import 'package:nm/servers/firestore_service.dart';
@@ -85,6 +88,10 @@ import 'package:nm/servers/firestore_service.dart';
 // }
 
 class DetailsScreen extends StatefulWidget {
+
+  final String washingBayName; //TODO Add  this
+
+   DetailsScreen(this.washingBayName,); //TODO Add  this
  
 
   @override
@@ -97,6 +104,27 @@ class _DetailsScreenState extends State<DetailsScreen> {
   TextEditingController phoneTextEditingController = TextEditingController();
   TextEditingController locationTextEditingController = TextEditingController();
   TextEditingController carTypeTextEditingController = TextEditingController();
+
+
+  //  StreamSubscription<QuerySnapshot> subscription;
+  // List<DocumentSnapshot> washingBayList;
+  // final CollectionReference collectionReference =
+  //     FirebaseFirestore.instance.collection("hairstyles");
+
+  //     @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   subscription = collectionReference.snapshots().listen((datasnapshot) {
+  //     setState(() {
+  //       washingBayList = datasnapshot.docs;
+  //     });
+  //   });
+
+  // }
+
+  // String imgPath = wallpapersList[i].get("hair");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,65 +140,73 @@ class _DetailsScreenState extends State<DetailsScreen> {
           horizontal: 10.0,
         ),
         child: Form(
-          child: Column(
-            children: <Widget>[
-              TextFormField(
-                validator: (String value) {
-                  if (value.isEmpty) {
-                    return 'Full name cannot be empty';
-                  }
-                  return null;
-                },
-                controller: nameTextEditingController,
-                decoration: InputDecoration(
-                  labelText: 'Full Name',
-                  hintText: 'Enter your full name here',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  keyboardType: TextInputType.phone,
-                  controller: phoneTextEditingController,
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+
+                // TODO make sure to style the text 
+                
+                Text(widget.washingBayName),
+
+                SizedBox(height: 20,),
+                TextFormField(
+                  validator: (String value) {
+                    if (value.isEmpty) {
+                      return 'Full name cannot be empty';
+                    }
+                    return null;
+                  },
+                  controller: nameTextEditingController,
                   decoration: InputDecoration(
-                    labelText: 'Phone number',
-                    hintText: 'Enter your Phone number here',
+                    labelText: 'Full Name',
+                    hintText: 'Enter your full name here',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  controller: locationTextEditingController,
-                  decoration: InputDecoration(
-                    labelText: 'Location',
-                    hintText: 'Enter your Location here',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    keyboardType: TextInputType.phone,
+                    controller: phoneTextEditingController,
+                    decoration: InputDecoration(
+                      labelText: 'Phone number',
+                      hintText: 'Enter your Phone number here',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  controller: carTypeTextEditingController,
-                  decoration: InputDecoration(
-                    labelText: 'Car Type',
-                    hintText: 'Enter your Car here',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    controller: locationTextEditingController,
+                    decoration: InputDecoration(
+                      labelText: 'Location',
+                      hintText: 'Enter your Location here',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    controller: carTypeTextEditingController,
+                    decoration: InputDecoration(
+                      labelText: 'Car Type',
+                      hintText: 'Enter your Car here',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -212,7 +248,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
             nameTextEditingController.text, 
             phoneTextEditingController.text, 
             locationTextEditingController.text, 
-            carTypeTextEditingController.text);
+            carTypeTextEditingController.text, 
+            //TODO Add  this
+            widget.washingBayName);
           }catch(e){
             print(e.toString());
             displayToastMessage("Error:::: " + e.toString(),context);
