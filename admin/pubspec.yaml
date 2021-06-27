@@ -34,6 +34,8 @@ dependencies:
   firebase_auth: ^0.18.0+1
   cloud_firestore: ^0.14.0+2
   fluttertoast: ^7.1.1
+  date_format: ^1.0.8
+  # timeago: ^2.0.28
 
 
 dev_dependencies:

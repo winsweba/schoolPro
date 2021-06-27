@@ -4,6 +4,7 @@ import 'package:flutter_appdsds/block/bookings_block.dart';
 import 'package:flutter_appdsds/block/toast_messages.dart';
 import 'package:flutter_appdsds/models/booking.dart';
 import 'package:flutter_appdsds/screens/signin.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {
@@ -44,12 +45,16 @@ class _MainPageState extends State<MainPage> {
               itemCount: snapshot.data.length,
               itemBuilder: (BuildContext context, int index){
                 var bookingData = snapshot.data[index];
+                var timing = DateTime.parse(bookingData.timestamp.toDate().toString());
+                // DateTime timing = (snapshot.data['timestamp'].toDate().toString());
                 return BookingCards(
                   name: bookingData.name,
                   phone: bookingData.phone,
                   location: bookingData.location,
                   carType: bookingData.carType,
                   washingBayName: bookingData.washingBayName,
+                  // timeAndDate: formatDate(timing, ['d'])
+                  timeAndDate: timing.toString(),
                 );
               }
             );
@@ -188,17 +193,21 @@ class BookingCards extends StatelessWidget {
   final String location;
   final String carType;
   final String washingBayName;
+  final String timeAndDate;
 
   BookingCards(
     {this.name,
     this.phone,
     this.location,
     this.carType,
-    this.washingBayName}
+    this.washingBayName,
+    this.timeAndDate
+    }
   );
 
   @override
   Widget build(BuildContext context) {
+    // var timing = DateTime.parse(timeAndDate.toDate().toString());
     return Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
@@ -209,6 +218,12 @@ class BookingCards extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(
+                timeAndDate,
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
               Text(
                 name,
                 style: TextStyle(
