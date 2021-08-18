@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nm/block/washing_block.dart';
 import 'package:nm/models/application_user.dart';
+import 'package:nm/models/laundry_model.dart';
 import 'package:nm/models/washing_but.dart';
 import 'package:nm/screens/register.dart';
 import 'package:nm/widget/Drawer.dart';
@@ -9,27 +10,27 @@ import 'package:nm/screens/details.dart';
 import 'package:nm/screens/sign_in.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
+class HomePageLon extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomePageLonState createState() => _HomePageLonState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageLonState extends State<HomePageLon> {
   @override
   Widget build(BuildContext context) {
-     var washingBay = Provider.of<WashingBlock>(context);
+    var laundry = Provider.of<WashingBlock>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("Washing Bay"),
         centerTitle: true,
-        backgroundColor: Colors.black45,
+        backgroundColor: Colors.lightBlue[200],
         elevation: 4.0,
       ),
       drawer: Drawer(
         child: MainDrawer(),
       ),
-      body: StreamBuilder<List<WashingData>>(
-          stream: washingBay.fetchUpcomingWashingBay,
+      body: StreamBuilder<List<LaundryData>>(
+          stream: laundry.fetchUpcomingLaundry,
           builder: (context, snapshot) {
             if (!snapshot.hasData)
               return Center(
@@ -40,18 +41,17 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.all(16),
               itemCount: snapshot.data.length,
               itemBuilder: (BuildContext context, int index) {
-                var washingData = snapshot.data[index];
+                var laundryData = snapshot.data[index];
                 return BuildImageInteractionCard(
-                  image: washingData.image,
-                  washingBayName: washingData.washingBayName,
-                  descrbtion: washingData.descrbtion,
+                  image: laundryData.image,
+                  washingBayName: laundryData.laundryName,
+                  descrbtion: laundryData.descrbtion,
                 );
               },
             );
           }),
     );
   }
-
 }
 
 class BuildImageInteractionCard extends StatelessWidget {
@@ -81,14 +81,13 @@ class BuildImageInteractionCard extends StatelessWidget {
                 child: InkWell(
                   onTap: () {
                     if (FirebaseAuth.instance.currentUser == null) {
-                      Navigator.push( context,
-                          MaterialPageRoute(builder: (_) => SignIn()));
+                      Navigator.push(
+                          context, MaterialPageRoute(builder: (_) => SignIn()));
                     } else {
                       Navigator.push(
                         context,
                         new MaterialPageRoute(
-                          
-                                                              //TODO Add  this
+                          //TODO Add  this
                           builder: (context) => DetailsScreen(washingBayName),
                         ),
                       );

@@ -17,12 +17,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-     var washingBay = Provider.of<WashingBlock>(context);
+    var washingBay = Provider.of<WashingBlock>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("Washing Bay"),
         centerTitle: true,
-        backgroundColor: Colors.black45,
+        backgroundColor: Colors.lightBlue[200],
         elevation: 4.0,
       ),
       drawer: Drawer(
@@ -51,7 +51,6 @@ class _HomePageState extends State<HomePage> {
           }),
     );
   }
-
 }
 
 class BuildImageInteractionCard extends StatelessWidget {
@@ -81,14 +80,13 @@ class BuildImageInteractionCard extends StatelessWidget {
                 child: InkWell(
                   onTap: () {
                     if (FirebaseAuth.instance.currentUser == null) {
-                      Navigator.push( context,
-                          MaterialPageRoute(builder: (_) => SignIn()));
+                      Navigator.push(
+                          context, MaterialPageRoute(builder: (_) => SignIn()));
                     } else {
                       Navigator.push(
                         context,
                         new MaterialPageRoute(
-                          
-                                                              //TODO Add  this
+                          //TODO Add  this
                           builder: (context) => DetailsScreen(washingBayName),
                         ),
                       );

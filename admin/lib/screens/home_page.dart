@@ -53,7 +53,6 @@ class _MainPageState extends State<MainPage> {
                   location: bookingData.location,
                   carType: bookingData.carType,
                   washingBayName: bookingData.washingBayName,
-                  // timeAndDate: formatDate(timing, ['d'])
                   timeAndDate: timing.toString(),
                 );
               }
