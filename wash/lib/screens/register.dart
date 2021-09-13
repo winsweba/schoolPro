@@ -103,7 +103,7 @@ class _SignUpState extends State<SignUp> {
                     displayToastMessage("Name must be at lest 3 characters.", context);
                   }
 
-                  else if (!emailTextEditingController.text.contains(regExpEmail) )
+                  else if (!emailTextEditingController.text.contains("@") )
                   {
                     displayToastMessage("Email address is not Valid", context);
                   }
@@ -155,7 +155,3 @@ class _SignUpState extends State<SignUp> {
     }
   }
 }
-
-
-  final RegExp regExpEmail = RegExp(
-    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
