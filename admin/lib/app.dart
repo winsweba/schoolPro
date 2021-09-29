@@ -2,7 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_appdsds/block/bookings_block.dart';
 import 'package:flutter_appdsds/screens/Register.dart';
-import 'package:flutter_appdsds/screens/home_page.dart';
+import 'package:flutter_appdsds/screens/car_home_page.dart';
+import 'package:flutter_appdsds/screens/home_main.dart';
 import 'package:flutter_appdsds/screens/signin.dart';
 import 'package:provider/provider.dart';
 
@@ -38,7 +39,7 @@ class PlatformApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
         title: "booking",
-        home:  FirebaseAuth.instance.currentUser == null ? SignIn() : MainPage(),
+        home:  FirebaseAuth.instance.currentUser == null ? SignIn() : HomeMainScreen(),
     );
   }
 }

@@ -142,7 +142,15 @@ class _CleanupDetailsState extends State<CleanupDetails> {
       ),
     );
   }
-  void makeRequest(BuildContext context){
+  
+}
+
+void makeRequest(BuildContext context){
+  TextEditingController nameTextEditingController = TextEditingController();
+  TextEditingController phoneTextEditingController = TextEditingController();
+  TextEditingController locationTextEditingController = TextEditingController();
+  TextEditingController additionalTextEditingController = TextEditingController();
+   String cleanupName;
     try{
       infoUserCleanupSetup(
           nameTextEditingController.text,
@@ -151,7 +159,7 @@ class _CleanupDetailsState extends State<CleanupDetails> {
           additionalTextEditingController.text,
 
           //TODO Add  this
-          widget.cleanupName);
+          cleanupName);
 
       displayToastMessage("Thanks for making this request ", context);
       Navigator.push(
@@ -166,4 +174,3 @@ class _CleanupDetailsState extends State<CleanupDetails> {
       displayToastMessage("Error:::: " + e.toString(),context);
     }
   }
-}

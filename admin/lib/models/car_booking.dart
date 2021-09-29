@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Bookig {
+class CarBookig {
   final String name;
   final String phone;
   final String location;
@@ -8,7 +8,7 @@ class Bookig {
   final String washingBayName;
   final Timestamp timestamp;
 
-    Bookig({
+    CarBookig({
       this.name, 
       this.phone, 
       this.location, 
@@ -16,8 +16,8 @@ class Bookig {
       this.washingBayName,
       this.timestamp});
 
-  factory Bookig.fromFirestore(Map<String, dynamic> json){
-    return Bookig(
+  factory CarBookig.fromFirestore(Map<String, dynamic> json){
+    return CarBookig(
       name: json['name'].toString(),
       phone: json['phone'].toString(),
       location: json['location'].toString(),

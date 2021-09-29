@@ -4,7 +4,8 @@ import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_appdsds/block/toast_messages.dart';
-import 'package:flutter_appdsds/screens/home_page.dart';
+import 'package:flutter_appdsds/screens/car_home_page.dart';
+import 'package:flutter_appdsds/screens/home_main.dart';
 import 'package:flutter_appdsds/screens/signin.dart';
 import 'package:flutter_appdsds/servers/firestore_servers.dart';
 
@@ -144,7 +145,7 @@ class _SignUpState extends State<SignUp> {
           nameTextEditingController.text, emailTextEditingController.text);
           displayToastMessage("Thank you for Signning up ", context);
       Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (_) => MainPage()));
+          .pushReplacement(MaterialPageRoute(builder: (_) => HomeMainScreen()));
     } catch (e) {
       print(e.toString());
       displayToastMessage("Error:::: " + e.toString(),context);

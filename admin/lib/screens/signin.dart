@@ -7,7 +7,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_appdsds/block/toast_messages.dart';
 import 'package:flutter_appdsds/screens/Register.dart';
-import 'package:flutter_appdsds/screens/home_page.dart';
+import 'package:flutter_appdsds/screens/car_home_page.dart';
+import 'package:flutter_appdsds/screens/home_main.dart';
 
 class SignIn  extends StatefulWidget {
 
@@ -115,7 +116,7 @@ class _SignState extends State<SignIn> {
 
             
             Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (_) => MainPage()));
+          .pushReplacement(MaterialPageRoute(builder: (_) => HomeMainScreen()));
 
           displayToastMessage("You are now Login ", context);
           }catch (e) {
